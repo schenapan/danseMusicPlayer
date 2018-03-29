@@ -20,6 +20,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // get file list
     ui->listWidget->addItems(fileList.getListName());
+    p_current_file = NULL;
 }
 
 MainWindow::~MainWindow()
@@ -74,6 +75,20 @@ void MainWindow::updatePosition(qint64 position)
 {
     ui->sliMusic->setValue(position);
     ui->lblTime->setText(MainWindow::formatTime(position));
+
+    if( (0!=position) && (position == mediaPlayer.duration())) {
+        if( ui->chkAutoPlay->isChecked() ) {
+            if( (ui->listWidget->currentRow()+1) < ui->listWidget->count() )
+            {
+                ui->listWidget->setCurrentRow(ui->listWidget->currentRow()+1);
+            }
+        }
+    }
+
+    if( p_current_file->isLightEnable() )
+    {
+        // send light configuration
+    }
 }
 
 void MainWindow::updateDuration(qint64 duration)
@@ -168,19 +183,14 @@ void MainWindow::on_btnAdd_clicked()
     }
 }
 
-void MainWindow::on_listWidget_itemSelectionChanged()
-{
-}
-
-void MainWindow::on_listWidget_currentTextChanged(const QString &currentText)
-{
-    //playUrl(QUrl::fromUserInput(currentText));
-}
-
 void MainWindow::on_listWidget_currentRowChanged(int currentRow)
 {
-
-
+    // load selected item to player
+    p_current_file = fileList.getMusicFile(ui->listWidget->item(currentRow)->text());
+    if( NULL != p_current_file )
+    {
+        playUrl(p_current_file->getUrl());
+    }
 }
 
 void MainWindow::on_btnRemove_clicked()
@@ -192,14 +202,5 @@ void MainWindow::on_btnRemove_clicked()
         fileList.removeFile(l_item_idx);
         ui->listWidget->clear();
         ui->listWidget->addItems(fileList.getListName());
-
-
     }
-}
-
-void MainWindow::on_listWidget_itemDoubleClicked(QListWidgetItem *item)
-{
-    // load selected item to player
-    QUrl l_url = fileList.getUrl(item->text());
-    playUrl(l_url);
 }

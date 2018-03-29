@@ -83,9 +83,9 @@ QStringList CXmlList::getListName()
     return lo_list;
 }
 
-void CXmlList::addFile(QUrl i_url)
+void CXmlList::addFile(QUrl i_url, bool i_light_enable)
 {
-    musicFileList.append(new CMusicFile(i_url));
+    musicFileList.append(new CMusicFile(i_url, i_light_enable));
     saveList();
 }
 
@@ -98,11 +98,23 @@ void CXmlList::removeFile(int i_file_idx)
     }
 }
 
-QUrl CXmlList::getUrl(QString i_filemane)
+CMusicFile *CXmlList::getMusicFile(QString i_filemane)
 {
     foreach (CMusicFile *file, musicFileList) {
         if( file->getName() == i_filemane ) {
-            return file->getUrl();
+            return file;
+        }
+    }
+
+    return NULL;
+}
+
+void CXmlList::setLightEnable(QUrl i_url, bool i_checked)
+{
+    foreach (CMusicFile *file, musicFileList) {
+        if( file->getUrl() == i_url ) {
+            file->setLightEnable(i_checked);
+            saveList();
         }
     }
 }

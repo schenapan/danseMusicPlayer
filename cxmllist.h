@@ -14,10 +14,13 @@ public:
 
     QStringList getListName();
 
-    void addFile(QUrl i_url);
+    void addFile(QUrl i_url, bool i_light_enable = false);
     void removeFile(int i_file_idx);
-    QUrl getUrl(QString i_filemane);
+    CMusicFile *getMusicFile(QString i_filemane);
+    void setLightEnable(QUrl i_url, bool i_checked);
 
+
+    void saveList();
 
 signals:
 
@@ -25,9 +28,6 @@ public slots:
 
 private:
     QList<CMusicFile *> musicFileList;
-
-    void saveList();
-
 
 };
 

@@ -40,15 +40,9 @@ private slots:
 
     void on_btnAdd_clicked();
 
-    void on_listWidget_itemSelectionChanged();
-
-    void on_listWidget_currentTextChanged(const QString &currentText);
-
     void on_listWidget_currentRowChanged(int currentRow);
 
     void on_btnRemove_clicked();
-
-    void on_listWidget_itemDoubleClicked(QListWidgetItem *item);
 
 private:
     Ui::MainWindow *ui;
@@ -56,6 +50,7 @@ private:
     QString fileName;
     QMediaPlayer mediaPlayer;
     CXmlList fileList;
+    CMusicFile *p_current_file;
 
 };
 
