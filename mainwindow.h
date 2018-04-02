@@ -44,6 +44,32 @@ private slots:
 
     void on_btnRemove_clicked();
 
+    void on_chkEnableLight_clicked(bool checked);
+
+    void on_rdState00_clicked();
+
+    void on_rdState01_clicked();
+
+    void on_rdState02_clicked();
+
+    void on_rdState03_clicked();
+
+    void on_rdState04_clicked();
+
+    void on_rdState05_clicked();
+
+    void on_rdState06_clicked();
+
+    void on_rdState07_clicked();
+
+    void on_rdState08_clicked();
+
+    void on_rdState09_clicked();
+
+    void on_rdState10_clicked();
+
+    void on_rdState11_clicked();
+
 private:
     Ui::MainWindow *ui;
 
@@ -51,6 +77,9 @@ private:
     QMediaPlayer mediaPlayer;
     CXmlList fileList;
     CMusicFile *p_current_file;
+
+    void saveLightStatus(void);
+    void setLightStatus(quint16 i_status);
 
 };
 
