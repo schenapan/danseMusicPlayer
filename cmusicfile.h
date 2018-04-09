@@ -21,20 +21,23 @@ public:
 
     /**
      * @brief getLightStatusAt
-     * @param i_time: in 1/100éme de seconde
+     * @param i_time: in 1/10éme de seconde
      * @return état des lumières au temps demandé
      */
     quint16 getLightStatusAt(quint64 i_time);
 
     /**
-     * @brief setLightStatusAt
-     * @param i_time: in 1/100éme de seconde
+     * @brief addEvent
+     * @param i_time: in 1/10éme de seconde
      * @param i_status: état des lumières
      */
-    bool setLightStatusAt(quint64 i_time, quint16 i_status);
+    bool addEvent(quint64 i_time, quint16 i_status);
 
+    bool removeEvent(QString i_event);
 
-    void fillElement(QDomElement *ip_element);
+    QStringList getEventList(void);
+
+    void fillElement(QDomElement *ip_element, QDomDocument *dom_doc);
 
 signals:
 
@@ -47,8 +50,15 @@ private:
     bool light_enable;
     quint16 *light_status;
     quint64 light_status_size;
+    QMap<quint64, quint16> light_event_map;
 
-    void clearLightStatus(void);
+
+    void buildLightConfiguration(void);
+    QString mapToString(quint64 i_time, quint16 i_config);
+    QString timeToString(quint64 i_time);
+    quint64 timeToValue(QString i_time);
+    QString configToString(quint16 i_config);
+    quint16 configToValue(QString i_config);
 };
 
 #endif // CMUSICFILE_H

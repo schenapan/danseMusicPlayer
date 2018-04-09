@@ -59,7 +59,7 @@ void CXmlList::saveList()
     dom_doc.appendChild(dom_element);
     foreach (CMusicFile *file, musicFileList) {
         QDomElement l_element = dom_doc.createElement(BAL_MUSIC_FILE);
-        file->fillElement(&l_element);
+        file->fillElement(&l_element,&dom_doc);
         dom_element.appendChild(l_element);
     }
     if( xml_doc.open(QIODevice::WriteOnly) )

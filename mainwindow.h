@@ -30,8 +30,6 @@ private slots:
     void updateInfo();
     void updateState(QMediaPlayer::State state);
 
-    void on_btnOpen_clicked();
-
     void on_btnPlay_clicked();
 
     void on_sliMusic_valueChanged(int value);
@@ -46,29 +44,10 @@ private slots:
 
     void on_chkEnableLight_clicked(bool checked);
 
-    void on_rdState00_clicked();
 
-    void on_rdState01_clicked();
+    void on_btnLightAdd_clicked();
 
-    void on_rdState02_clicked();
-
-    void on_rdState03_clicked();
-
-    void on_rdState04_clicked();
-
-    void on_rdState05_clicked();
-
-    void on_rdState06_clicked();
-
-    void on_rdState07_clicked();
-
-    void on_rdState08_clicked();
-
-    void on_rdState09_clicked();
-
-    void on_rdState10_clicked();
-
-    void on_rdState11_clicked();
+    void on_btnLightRemove_clicked();
 
 private:
     Ui::MainWindow *ui;
@@ -78,7 +57,6 @@ private:
     CXmlList fileList;
     CMusicFile *p_current_file;
 
-    void saveLightStatus(void);
     void setLightStatus(quint16 i_status);
 
 };

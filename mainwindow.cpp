@@ -1,20 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-
-
-#define RD01_MASK 0x0001
-#define RD02_MASK 0x0002
-#define RD03_MASK 0x0004
-#define RD04_MASK 0x0008
-#define RD05_MASK 0x0010
-#define RD06_MASK 0x0020
-#define RD07_MASK 0x0040
-#define RD08_MASK 0x0080
-#define RD09_MASK 0x0100
-#define RD10_MASK 0x0200
-#define RD11_MASK 0x0400
-#define RD12_MASK 0x0800
-
+#include "lighteventui.h"
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -110,8 +96,6 @@ void MainWindow::updateDuration(qint64 duration)
 {
     ui->sliMusic->setRange(0, duration);
     ui->sliMusic->setEnabled(duration > 0);
-//    ui->sliMusic->setPageStep(duration / 100);
-//    ui->sliMusic->setSingleStep(duration / 100);
     updateInfo();
 
 }
@@ -148,25 +132,13 @@ void MainWindow::updateState(QMediaPlayer::State state)
     }
 }
 
-void MainWindow::on_btnOpen_clicked()
-{
-    // open a file
-    QFileDialog fileDialog(this);
-    fileDialog.setAcceptMode(QFileDialog::AcceptOpen);
-    fileDialog.setWindowTitle(tr("Open File"));
-    fileDialog.setMimeTypeFilters(MainWindow::supportedMimeTypes());
-    fileDialog.setDirectory(QStandardPaths::standardLocations(QStandardPaths::MusicLocation).value(0, QDir::homePath()));
-    if (fileDialog.exec() == QDialog::Accepted)
-        playUrl(fileDialog.selectedUrls().constFirst());
-
-}
-
 void MainWindow::on_btnPlay_clicked()
 {
     // play files
-    if (mediaPlayer.mediaStatus() == QMediaPlayer::NoMedia)
+    /*if (mediaPlayer.mediaStatus() == QMediaPlayer::NoMedia)
         on_btnOpen_clicked();
-    else if (mediaPlayer.state() == QMediaPlayer::PlayingState)
+    else*/
+    if (mediaPlayer.state() == QMediaPlayer::PlayingState)
         mediaPlayer.pause();
     else
         mediaPlayer.play();
@@ -206,12 +178,17 @@ void MainWindow::on_btnAdd_clicked()
 void MainWindow::on_listWidget_currentRowChanged(int currentRow)
 {
     // load selected item to player
-    p_current_file = fileList.getMusicFile(ui->listWidget->item(currentRow)->text());
-    if( NULL != p_current_file )
+    if( currentRow >= 0 )
     {
-        playUrl(p_current_file->getUrl());
-        ui->chkEnableLight->setChecked(p_current_file->isLightEnable());
-        ui->grpLight->setEnabled(p_current_file->isLightEnable());
+        p_current_file = fileList.getMusicFile(ui->listWidget->item(currentRow)->text());
+        if( NULL != p_current_file )
+        {
+            playUrl(p_current_file->getUrl());
+            ui->chkEnableLight->setChecked(p_current_file->isLightEnable());
+            ui->grpLight->setEnabled(p_current_file->isLightEnable());
+            ui->lstLightEvent->clear();
+            ui->lstLightEvent->addItems(p_current_file->getEventList());
+        }
     }
 }
 
@@ -237,97 +214,46 @@ void MainWindow::on_chkEnableLight_clicked(bool checked)
     }
 }
 
-void MainWindow::on_rdState00_clicked()
+
+void MainWindow::on_btnLightAdd_clicked()
 {
-   saveLightStatus();
+    lightEventUi *dial = new lightEventUi(this);
+    quint64 l_time = mediaPlayer.position()/100;
+
+    dial->setModal(true);
+
+    dial->setTime(l_time);
+    dial->setConfig(p_current_file->getLightStatusAt(l_time));
+
+
+    if( dial->exec() == QDialog::Accepted )
+    {
+        if( p_current_file->addEvent(dial->getTime(),dial->getConfig()) )
+        {
+            fileList.saveList();
+            ui->lstLightEvent->clear();
+            ui->lstLightEvent->addItems(p_current_file->getEventList());
+        }
+    }
+
+    delete dial;
 }
 
-void MainWindow::on_rdState01_clicked()
+void MainWindow::on_btnLightRemove_clicked()
 {
-    saveLightStatus();
-}
+    QListWidgetItem *l_item = ui->lstLightEvent->currentItem();
 
-void MainWindow::on_rdState02_clicked()
-{
-    saveLightStatus();
+    if( NULL != l_item) {
+        p_current_file->removeEvent(l_item->text());
+        fileList.saveList();
+        ui->lstLightEvent->clear();
+        ui->lstLightEvent->addItems(p_current_file->getEventList());
+    }
 }
-
-void MainWindow::on_rdState03_clicked()
-{
-    saveLightStatus();
-}
-
-void MainWindow::on_rdState04_clicked()
-{
-    saveLightStatus();
-}
-
-void MainWindow::on_rdState05_clicked()
-{
-    saveLightStatus();
-}
-
-void MainWindow::on_rdState06_clicked()
-{
-    saveLightStatus();
-}
-
-void MainWindow::on_rdState07_clicked()
-{
-    saveLightStatus();
-}
-
-void MainWindow::on_rdState08_clicked()
-{
-    saveLightStatus();
-}
-
-void MainWindow::on_rdState09_clicked()
-{
-    saveLightStatus();
-}
-
-void MainWindow::on_rdState10_clicked()
-{
-    saveLightStatus();
-}
-
-void MainWindow::on_rdState11_clicked()
-{
-    saveLightStatus();
-}
-
 
 /***********************************************************************************
  *  PRIVATE
  **********************************************************************************/
-
-
-void MainWindow::saveLightStatus(void)
-{
-    quint16 l_status = 0;
-
-    if( NULL != p_current_file )
-    {
-        l_status |= ui->rdState00->isChecked()<<0;
-        l_status |= ui->rdState01->isChecked()<<1;
-        l_status |= ui->rdState02->isChecked()<<2;
-        l_status |= ui->rdState03->isChecked()<<3;
-        l_status |= ui->rdState04->isChecked()<<4;
-        l_status |= ui->rdState05->isChecked()<<5;
-        l_status |= ui->rdState06->isChecked()<<6;
-        l_status |= ui->rdState07->isChecked()<<7;
-        l_status |= ui->rdState08->isChecked()<<8;
-        l_status |= ui->rdState09->isChecked()<<9;
-        l_status |= ui->rdState10->isChecked()<<10;
-        l_status |= ui->rdState11->isChecked()<<11;
-
-        if( p_current_file->setLightStatusAt(mediaPlayer.position()/100,l_status) )
-        {
-            fileList.saveList();
-        }
-    }
-}
 
 void MainWindow::setLightStatus(quint16 i_status)
 {
@@ -344,3 +270,4 @@ void MainWindow::setLightStatus(quint16 i_status)
         ui->rdState10->setChecked(i_status&RD11_MASK);
         ui->rdState11->setChecked(i_status&RD12_MASK);
 }
+

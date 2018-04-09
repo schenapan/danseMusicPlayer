@@ -30,15 +30,18 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     cxmllist.cpp \
-    cmusicfile.cpp
+    cmusicfile.cpp \
+    lighteventui.cpp
 
 HEADERS += \
         mainwindow.h \
     cxmllist.h \
-    cmusicfile.h
+    cmusicfile.h \
+    lighteventui.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    lighteventui.ui
 
 RESOURCES += \
     ressource.qrc
