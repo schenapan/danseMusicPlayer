@@ -222,7 +222,7 @@ QString CMusicFile::mapToString(quint64 i_time, quint16 i_config)
     o_str.append( QStringLiteral("%1:%2:%3")
         .arg(minutes, 2, 10, QLatin1Char('0'))
         .arg(seconds, 2, 10, QLatin1Char('0'))
-        .arg(dixiemme, 3, 10, QLatin1Char('0')) );
+        .arg(dixiemme, 1, 10, QLatin1Char('0')) );
     o_str.append(" - ");
     for(int loop=0; loop<16; loop++)
     {

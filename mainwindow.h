@@ -7,6 +7,7 @@
 #include <QMediaPlayer>
 
 #include "cxmllist.h"
+#include "dongle/cdongle.h"
 
 namespace Ui {
 class MainWindow;
@@ -49,6 +50,8 @@ private slots:
 
     void on_btnLightRemove_clicked();
 
+    void SlotDongleConnect(bool i_connect);
+
 private:
     Ui::MainWindow *ui;
 
@@ -56,6 +59,7 @@ private:
     QMediaPlayer mediaPlayer;
     CXmlList fileList;
     CMusicFile *p_current_file;
+    CDongle dongle;
 
     void setLightStatus(quint16 i_status);
 

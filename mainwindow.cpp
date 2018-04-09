@@ -18,6 +18,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
     mediaPlayer.setNotifyInterval(100);
 
+    // dongle
+    connect(&dongle, SIGNAL(SignalDongleConnect(bool)), this, SLOT(SlotDongleConnect(bool)));
+
+
     // get file list
     ui->listWidget->addItems(fileList.getListName());
     p_current_file = NULL;
@@ -248,6 +252,30 @@ void MainWindow::on_btnLightRemove_clicked()
         fileList.saveList();
         ui->lstLightEvent->clear();
         ui->lstLightEvent->addItems(p_current_file->getEventList());
+    }
+}
+
+//------ DONGLE -----
+void MainWindow::SlotDongleConnect(bool i_connect)
+{
+    if( i_connect )
+    {
+        ui->lblDongle->setText("Dongle Radio version : " + QString::number(dongle.GetFwVersion().at(0)) + "." + QString::number(dongle.GetFwVersion().at(1)));
+
+        // configure mfglib for sending message
+        QList<quint8> l_data;
+        l_data.append(0);
+        dongle.SendEzspCmd(EZSP_MFGLIB_START,l_data);
+        l_data.clear();
+        l_data.append(3);
+        dongle.SendEzspCmd(EZSP_MFGLIB_SET_POWER,l_data);
+        l_data.clear();
+        l_data.append(15);
+        dongle.SendEzspCmd(EZSP_MFGLIB_SET_CHANNEL,l_data);
+    }
+    else
+    {
+        ui->lblDongle->setText("Aucun Dongle Radio");
     }
 }
 

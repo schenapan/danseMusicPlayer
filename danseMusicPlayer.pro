@@ -10,6 +10,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 QT += multimedia
 QT += xml
+QT += serialport
 
 TARGET = danseMusicPlayer
 TEMPLATE = app
@@ -31,13 +32,21 @@ SOURCES += \
         mainwindow.cpp \
     cxmllist.cpp \
     cmusicfile.cpp \
-    lighteventui.cpp
+    lighteventui.cpp \
+    dongle/cash.cpp \
+    dongle/cuart.cpp \
+    dongle/cdongle.cpp
 
 HEADERS += \
         mainwindow.h \
     cxmllist.h \
     cmusicfile.h \
-    lighteventui.h
+    lighteventui.h \
+    dongle/cash.h \
+    dongle/cuart.h \
+    dongle/ezsp_constant.h \
+    dongle/log.h \
+    dongle/cdongle.h
 
 FORMS += \
         mainwindow.ui \
