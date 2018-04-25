@@ -63,6 +63,8 @@ private:
 
     void setLightStatus(quint16 i_status);
 
+protected:
+    void keyPressEvent(QKeyEvent *event);
 };
 
 #endif // MAINWINDOW_H

@@ -35,7 +35,7 @@ void CDongle::OpenUart( void )
   if( false == uart.Open() )
   {
     // log msg
-    LOGGER(logTRACE) << "OpenUart FAILED";
+    // LOGGER(logTRACE) << "OpenUart FAILED";
 
     // start one shot timer for testing to open later
     QTimer::singleShot(OPEN_UART_TIMEOUT, this, SLOT(SlotOpenUart()));

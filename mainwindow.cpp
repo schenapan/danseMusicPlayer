@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include "lighteventui.h"
 
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -25,6 +26,10 @@ MainWindow::MainWindow(QWidget *parent) :
     // get file list
     ui->listWidget->addItems(fileList.getListName());
     p_current_file = NULL;
+
+    setFocusPolicy(Qt::StrongFocus);
+
+    qDebug() << "MainWindow";
 }
 
 MainWindow::~MainWindow()
@@ -318,3 +323,17 @@ void MainWindow::setLightStatus(quint16 i_status)
         dongle.SendEzspCmd(EZSP_MFGLIB_SEND_PACKET,l_data);
 }
 
+
+/***********************************************************************************
+ *  PROTECTED
+**********************************************************************************/
+
+
+void MainWindow::keyPressEvent(QKeyEvent *event)
+{
+    // qDebug() << "keyPressEvent : " << event->text();
+    if(event->key() == Qt::Key_Space)
+    {
+        on_btnPlay_clicked();
+    }
+}
