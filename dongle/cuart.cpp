@@ -314,7 +314,13 @@ void CUart::SendMsg( void )
         else
         {
           // debug
-          // LOGGER(logTRACE) << "uart waiting_msg : " << QString::number(waiting_msg.size());
+          QString l_debug_msg;
+          QList<quint8> l_msg = waiting_msg.head();
+          for(int loop=0;loop<l_msg.size();loop++)
+          {
+              l_debug_msg.append(QString::number(l_msg.at(loop),16).toUpper().rightJustified(2,'0') + " ");
+          }
+          LOGGER(logTRACE) << "uart SendMsg : " << l_debug_msg;
 
           // success, wait ack and start timeout timer
           wait_ack_timeout = WAIT_ACK_TIMEOUT_VALUE;

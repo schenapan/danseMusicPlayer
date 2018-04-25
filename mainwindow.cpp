@@ -297,5 +297,24 @@ void MainWindow::setLightStatus(quint16 i_status)
         ui->rdState09->setChecked(i_status&RD10_MASK);
         ui->rdState10->setChecked(i_status&RD11_MASK);
         ui->rdState11->setChecked(i_status&RD12_MASK);
+
+        // write to dongle
+        QList<quint8> l_data;
+        l_data.append(16); // size
+        l_data.append(0x01);
+        l_data.append(0x08);
+        l_data.append(0x00); // seq number
+        l_data.append(0xCD);
+        l_data.append(0xAB);
+        l_data.append(0xFF);
+        l_data.append(0xFF);
+        l_data.append('D');
+        l_data.append('M');
+        l_data.append('X');
+        l_data.append(0x10);
+        l_data.append(i_status&0xFF);
+        l_data.append((i_status>>8)&0xFF);
+
+        dongle.SendEzspCmd(EZSP_MFGLIB_SEND_PACKET,l_data);
 }
 
