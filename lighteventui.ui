@@ -14,66 +14,6 @@
    <string>Dialog</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0">
-    <widget class="QRadioButton" name="rdState00">
-     <property name="text">
-      <string>0</string>
-     </property>
-     <property name="autoExclusive">
-      <bool>false</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="0">
-    <widget class="QRadioButton" name="rdState01">
-     <property name="text">
-      <string>1</string>
-     </property>
-     <property name="autoExclusive">
-      <bool>false</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="0">
-    <widget class="QRadioButton" name="rdState02">
-     <property name="text">
-      <string>2</string>
-     </property>
-     <property name="autoExclusive">
-      <bool>false</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="0">
-    <widget class="QRadioButton" name="rdState03">
-     <property name="text">
-      <string>3</string>
-     </property>
-     <property name="autoExclusive">
-      <bool>false</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="0">
-    <widget class="QRadioButton" name="rdState04">
-     <property name="text">
-      <string>4</string>
-     </property>
-     <property name="autoExclusive">
-      <bool>false</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="5" column="0">
-    <widget class="QRadioButton" name="rdState05">
-     <property name="text">
-      <string>5</string>
-     </property>
-     <property name="autoExclusive">
-      <bool>false</bool>
-     </property>
-    </widget>
-   </item>
    <item row="6" column="0">
     <widget class="QLabel" name="label">
      <property name="text">
@@ -133,60 +73,120 @@
      </property>
     </widget>
    </item>
-   <item row="0" column="3">
+   <item row="0" column="0" colspan="2">
+    <widget class="QRadioButton" name="rdState00">
+     <property name="text">
+      <string>0 - Eva</string>
+     </property>
+     <property name="autoExclusive">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0" colspan="2">
+    <widget class="QRadioButton" name="rdState01">
+     <property name="text">
+      <string>1 - Ninon</string>
+     </property>
+     <property name="autoExclusive">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0" colspan="2">
+    <widget class="QRadioButton" name="rdState02">
+     <property name="text">
+      <string>2 - Ellia</string>
+     </property>
+     <property name="autoExclusive">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0" colspan="2">
+    <widget class="QRadioButton" name="rdState03">
+     <property name="text">
+      <string>3 - Emma_C</string>
+     </property>
+     <property name="autoExclusive">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0" colspan="2">
+    <widget class="QRadioButton" name="rdState04">
+     <property name="text">
+      <string>4 - Coline</string>
+     </property>
+     <property name="autoExclusive">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="0" colspan="2">
+    <widget class="QRadioButton" name="rdState05">
+     <property name="text">
+      <string>5 - Lucie</string>
+     </property>
+     <property name="autoExclusive">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="3" colspan="2">
     <widget class="QRadioButton" name="rdState06">
      <property name="text">
-      <string>6</string>
+      <string>6 - Manon_F</string>
      </property>
      <property name="autoExclusive">
       <bool>false</bool>
      </property>
     </widget>
    </item>
-   <item row="1" column="3">
+   <item row="1" column="3" colspan="2">
     <widget class="QRadioButton" name="rdState07">
      <property name="text">
-      <string>7</string>
+      <string>7 - Emma_LP</string>
      </property>
      <property name="autoExclusive">
       <bool>false</bool>
      </property>
     </widget>
    </item>
-   <item row="2" column="3">
+   <item row="2" column="3" colspan="2">
     <widget class="QRadioButton" name="rdState08">
      <property name="text">
-      <string>8</string>
+      <string>8 - Ines</string>
      </property>
      <property name="autoExclusive">
       <bool>false</bool>
      </property>
     </widget>
    </item>
-   <item row="3" column="3">
+   <item row="3" column="3" colspan="2">
     <widget class="QRadioButton" name="rdState09">
      <property name="text">
-      <string>9</string>
+      <string>9 - Laetitia</string>
      </property>
      <property name="autoExclusive">
       <bool>false</bool>
      </property>
     </widget>
    </item>
-   <item row="4" column="3">
+   <item row="4" column="3" colspan="2">
     <widget class="QRadioButton" name="rdState10">
      <property name="text">
-      <string>10</string>
+      <string>10 - Manon_P</string>
      </property>
      <property name="autoExclusive">
       <bool>false</bool>
      </property>
     </widget>
    </item>
-   <item row="5" column="3">
+   <item row="5" column="3" colspan="2">
     <widget class="QRadioButton" name="rdState11">
      <property name="text">
-      <string>11</string>
+      <string>11 - Perrine</string>
      </property>
      <property name="autoExclusive">
       <bool>false</bool>
