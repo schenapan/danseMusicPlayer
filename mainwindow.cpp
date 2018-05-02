@@ -28,6 +28,7 @@ MainWindow::MainWindow(QWidget *parent) :
     p_current_file = NULL;
 
     setFocusPolicy(Qt::StrongFocus);
+    this->grabKeyboard();
 
     qDebug() << "MainWindow";
 }
