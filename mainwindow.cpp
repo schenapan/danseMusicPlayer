@@ -267,7 +267,7 @@ void MainWindow::on_btnLightRemove_clicked()
 }
 
 //------ DONGLE -----
-void MainWindow::SlotDongleConnect(bool i_connect)
+void MainWindow:: SlotDongleConnect(bool i_connect)
 {
     if( i_connect )
     {
@@ -311,7 +311,7 @@ void MainWindow::setLightStatus(quint16 i_status)
 
         // write to dongle
         QList<quint8> l_data;
-        l_data.append(16); // size
+        l_data.append(15); // size
         l_data.append(0x01);
         l_data.append(0x08);
         l_data.append(0x00); // seq number
