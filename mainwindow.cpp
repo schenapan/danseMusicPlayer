@@ -227,6 +227,8 @@ void MainWindow::on_chkEnableLight_clicked(bool checked)
 
 void MainWindow::on_btnLightAdd_clicked()
 {
+    this->releaseKeyboard();
+
     lightEventUi *dial = new lightEventUi(this);
     quint64 l_time = mediaPlayer.position()/100;
 
@@ -234,6 +236,7 @@ void MainWindow::on_btnLightAdd_clicked()
 
     dial->setTime(l_time);
     dial->setConfig(p_current_file->getLightStatusAt(l_time));
+
 
 
     if( dial->exec() == QDialog::Accepted )
@@ -247,6 +250,8 @@ void MainWindow::on_btnLightAdd_clicked()
     }
 
     delete dial;
+
+    this->grabKeyboard();
 }
 
 void MainWindow::on_btnLightRemove_clicked()
@@ -262,7 +267,7 @@ void MainWindow::on_btnLightRemove_clicked()
 }
 
 //------ DONGLE -----
-void MainWindow::SlotDongleConnect(bool i_connect)
+void MainWindow:: SlotDongleConnect(bool i_connect)
 {
     if( i_connect )
     {
@@ -309,7 +314,7 @@ void MainWindow::setLightStatus(quint16 i_status)
 
         // write to dongle
         QList<quint8> l_data;
-        l_data.append(16); // size
+        l_data.append(15); // size
         l_data.append(0x01);
         l_data.append(0x08);
         l_data.append(seq_counter++); // seq number
@@ -339,5 +344,8 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
     if(event->key() == Qt::Key_Space)
     {
         on_btnPlay_clicked();
+    }
+    else {
+
     }
 }

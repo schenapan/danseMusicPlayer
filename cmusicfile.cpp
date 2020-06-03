@@ -30,7 +30,7 @@ CMusicFile::CMusicFile(QDomElement i_element, QObject *parent) : QObject(parent)
     {
         light_enable = true;
 
-        // fill evant list
+        // fill event list
         QDomNode noeud = i_element.firstChild();
         light_event_map.clear();
         while(!noeud.isNull())
