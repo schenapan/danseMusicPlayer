@@ -51,6 +51,7 @@ void lightEventUi::setConfig(quint16 i_config)
     ui->rdState09->setChecked(i_config&RD10_MASK);
     ui->rdState10->setChecked(i_config&RD11_MASK);
     ui->rdState11->setChecked(i_config&RD12_MASK);
+    ui->rdState12->setChecked(i_config&RD13_MASK);
 
 }
 
@@ -70,6 +71,7 @@ quint16 lightEventUi::getConfig(void)
     o_config |= ui->rdState09->isChecked()<<9;
     o_config |= ui->rdState10->isChecked()<<10;
     o_config |= ui->rdState11->isChecked()<<11;
+    o_config |= ui->rdState12->isChecked()<<12;
 
     return o_config;
 }

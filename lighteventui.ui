@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>387</width>
-    <height>300</height>
+    <width>545</width>
+    <height>321</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -76,7 +76,7 @@
    <item row="0" column="0" colspan="2">
     <widget class="QRadioButton" name="rdState00">
      <property name="text">
-      <string>0 - Eva</string>
+      <string>0 - Melinda</string>
      </property>
      <property name="autoExclusive">
       <bool>false</bool>
@@ -86,7 +86,7 @@
    <item row="1" column="0" colspan="2">
     <widget class="QRadioButton" name="rdState01">
      <property name="text">
-      <string>1 - Ninon</string>
+      <string>1 - Fanny</string>
      </property>
      <property name="autoExclusive">
       <bool>false</bool>
@@ -96,7 +96,7 @@
    <item row="2" column="0" colspan="2">
     <widget class="QRadioButton" name="rdState02">
      <property name="text">
-      <string>2 - Ellia</string>
+      <string>2 - Juliette</string>
      </property>
      <property name="autoExclusive">
       <bool>false</bool>
@@ -106,7 +106,7 @@
    <item row="3" column="0" colspan="2">
     <widget class="QRadioButton" name="rdState03">
      <property name="text">
-      <string>3 - Emma_C</string>
+      <string>3 - Clémence</string>
      </property>
      <property name="autoExclusive">
       <bool>false</bool>
@@ -116,7 +116,7 @@
    <item row="4" column="0" colspan="2">
     <widget class="QRadioButton" name="rdState04">
      <property name="text">
-      <string>4 - Coline</string>
+      <string>4 - Noémie</string>
      </property>
      <property name="autoExclusive">
       <bool>false</bool>
@@ -126,7 +126,7 @@
    <item row="5" column="0" colspan="2">
     <widget class="QRadioButton" name="rdState05">
      <property name="text">
-      <string>5 - Lucie</string>
+      <string>5 - Alice</string>
      </property>
      <property name="autoExclusive">
       <bool>false</bool>
@@ -136,7 +136,7 @@
    <item row="0" column="3" colspan="2">
     <widget class="QRadioButton" name="rdState06">
      <property name="text">
-      <string>6 - Manon_F</string>
+      <string>6 - Mathilde</string>
      </property>
      <property name="autoExclusive">
       <bool>false</bool>
@@ -146,7 +146,7 @@
    <item row="1" column="3" colspan="2">
     <widget class="QRadioButton" name="rdState07">
      <property name="text">
-      <string>7 - Emma_LP</string>
+      <string>7 - Maylis</string>
      </property>
      <property name="autoExclusive">
       <bool>false</bool>
@@ -156,7 +156,7 @@
    <item row="2" column="3" colspan="2">
     <widget class="QRadioButton" name="rdState08">
      <property name="text">
-      <string>8 - Ines</string>
+      <string>8 - Edith</string>
      </property>
      <property name="autoExclusive">
       <bool>false</bool>
@@ -166,7 +166,7 @@
    <item row="3" column="3" colspan="2">
     <widget class="QRadioButton" name="rdState09">
      <property name="text">
-      <string>9 - Laetitia</string>
+      <string>9 - Lara</string>
      </property>
      <property name="autoExclusive">
       <bool>false</bool>
@@ -176,7 +176,7 @@
    <item row="4" column="3" colspan="2">
     <widget class="QRadioButton" name="rdState10">
      <property name="text">
-      <string>10 - Manon_P</string>
+      <string>10 - Eleia</string>
      </property>
      <property name="autoExclusive">
       <bool>false</bool>
@@ -186,7 +186,17 @@
    <item row="5" column="3" colspan="2">
     <widget class="QRadioButton" name="rdState11">
      <property name="text">
-      <string>11 - Perrine</string>
+      <string>11 - Livia</string>
+     </property>
+     <property name="autoExclusive">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="6">
+    <widget class="QRadioButton" name="rdState12">
+     <property name="text">
+      <string>12 - Clea</string>
      </property>
      <property name="autoExclusive">
       <bool>false</bool>

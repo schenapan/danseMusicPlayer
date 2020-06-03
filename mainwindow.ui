@@ -271,6 +271,16 @@
          </property>
         </widget>
        </item>
+       <item row="3" column="13">
+        <widget class="QRadioButton" name="rdState12">
+         <property name="text">
+          <string>12</string>
+         </property>
+         <property name="autoExclusive">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
       </layout>
      </widget>
     </item>

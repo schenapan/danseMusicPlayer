@@ -291,6 +291,8 @@ void MainWindow::SlotDongleConnect(bool i_connect)
 
 void MainWindow::setLightStatus(quint16 i_status)
 {
+    static uint8_t seq_counter = 0;
+
         ui->rdState00->setChecked(i_status&RD01_MASK);
         ui->rdState01->setChecked(i_status&RD02_MASK);
         ui->rdState02->setChecked(i_status&RD03_MASK);
@@ -303,13 +305,14 @@ void MainWindow::setLightStatus(quint16 i_status)
         ui->rdState09->setChecked(i_status&RD10_MASK);
         ui->rdState10->setChecked(i_status&RD11_MASK);
         ui->rdState11->setChecked(i_status&RD12_MASK);
+        ui->rdState12->setChecked(i_status&RD13_MASK);
 
         // write to dongle
         QList<quint8> l_data;
         l_data.append(16); // size
         l_data.append(0x01);
         l_data.append(0x08);
-        l_data.append(0x00); // seq number
+        l_data.append(seq_counter++); // seq number
         l_data.append(0xCD);
         l_data.append(0xAB);
         l_data.append(0xFF);
@@ -317,7 +320,7 @@ void MainWindow::setLightStatus(quint16 i_status)
         l_data.append('D');
         l_data.append('M');
         l_data.append('X');
-        l_data.append(0x10);
+        l_data.append(0x11); // use frame offset as number of repetition for frame option 1 (remember : 4 bytesframe option | 4 bytes frame offset)
         l_data.append(i_status&0xFF);
         l_data.append((i_status>>8)&0xFF);
 

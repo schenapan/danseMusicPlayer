@@ -15,6 +15,7 @@
 #define RD10_MASK 0x0200
 #define RD11_MASK 0x0400
 #define RD12_MASK 0x0800
+#define RD13_MASK 0x1000
 
 namespace Ui {
 class lightEventUi;
